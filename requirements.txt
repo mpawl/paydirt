@@ -1,0 +1,6 @@
+boto3
+requests
+tldextract
+python-whois
+python-dotenv
+python-digitalocean
