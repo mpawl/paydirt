@@ -13,7 +13,13 @@ API keys must be acquired for each of these services to use Pay Dirt.
 
 ## Virus Total
 
-A Virus Total API key is required to run Pay Dirt. Virus Total provides free API keys. [Instructions here](https://docs.virustotal.com/docs/please-give-me-an-api-key) to get a free Virus Total API key. 
+A Virus Total API key is required to run Pay Dirt. Virus Total provides free API keys. [Instructions here](https://docs.virustotal.com/docs/please-give-me-an-api-key) to get a free Virus Total API key. The free Virus Total API key has limits:
+
+* 500 calls per day
+* 240 calls per hour
+* 4 calls per minute
+
+Pay Dirt has multiple sleeps built in to keep within the 4 calls per minute. They can be removed if an unrestricted Virust Total API key is used. If a run is started that will exceed the daily total, Pay Dirt will adjust down the number of IPs to test. Hourly is more work to judge, depending on when the tool starts running.
 
 Once your Virus Total API key is acquired, it must be populated in the `.env` file. The `.env` file must be stored in the same directory as `pd.py`. The entry in `.env` file should look like below:
 
@@ -76,4 +82,19 @@ options:
 
 # Logging
 
+The Pay Dirt log file is pipe separated:
+* Timestamp
+* IP address tested
+* Hostname (if found)
+* Cloud provider (aws | do)
+* Region the IP address was found
+* Domain registration expiration date (if a hostname is found)
+* MATCH or empty. MATCH is implied if the hostname field is populated. 
 
+Below is an example log line for a MATCH:
+
+`2024-03-12 19:14:49,685|192.0.2.10|site.example|aws|ap-northeast-1|2025-03-18|MATCH`
+
+# Suggestions
+
+I suggest keeping the cloud provider admin console pages open when running the tool. This way, the user can quickly release any IPs if there is an error with the tool. 
