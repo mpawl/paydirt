@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import pdb
 import argparse
 import boto3
 import digitalocean
