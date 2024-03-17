@@ -95,6 +95,14 @@ Below is an example log line for a MATCH:
 
 `2024-03-12 19:14:49,685|192.0.2.10|site.example|aws|ap-northeast-1|2025-03-18|MATCH`
 
+# Grabbing IP Addresses
+
+AWS allows users to grab a particular Elastic IP address using the awscli (there is no equivilent in the web console, this must be done with awscli). The command below will grab a specific Elastic IP if available. This doesn't need to be run with the same AWS account used to find the dangling DNS entry and IP address. 
+
+`aws ec2 allocate-address --domain vpc --region <region> --address <IP address>`
+
+Digital Ocean does not support requisting particular Reserved IP addresses. The desired Reserved IP address must be allocated to a Droplet before it is released. 
+
 # Suggestions
 
 I suggest keeping the cloud provider admin console pages open when running the tool. This way, the user can quickly release any IPs if there is an error with the tool. 
