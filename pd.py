@@ -151,9 +151,6 @@ def allocate_and_release_ip(run_data):
         response = ec2.meta.client.release_address(AllocationId=eip['AllocationId'])
         print(f"Elastic IP Released: {run_data['ip_address']}")
 
-    #Override for testing
-    #run_data['ip_address'] = '161.35.253.137'
-
     return run_data
 
 
